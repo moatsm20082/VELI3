@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<script>(function(){try{var l=localStorage.getItem('velix-lang');if(!l){var n=(navigator.language||'en').toLowerCase();l=n.indexOf('ar')===0?'ar':'en';}document.documentElement.setAttribute('lang',l);document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr');}catch(e){}})();</script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin — VELIX Web Solutions</title>
+<meta content="noindex, nofollow" name="robots"/>
+<link href="assets/img/logo.png" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=Cairo:wght@500;600;700;800&amp;family=Tajawal:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="assets/css/style.css" rel="stylesheet"/>
+</head>
+<body class="admin-body">
+<!-- ============================ LOGIN GATE ============================ -->
+<div class="admin-login" id="loginScreen">
+<div class="admin-login-card">
+<img alt="VELIX" src="assets/img/logo.png"/>
+<h3 data-i18n="t_4b08d55e" style="color:#fff">Admin Dashboard</h3>
+<p data-i18n="t_d7c13658" style="color:#8891AC;font-size:0.88rem">Sign in to manage projects, news and leads.</p>
+<input autocomplete="off" data-i18n-placeholder="t_63c82829" id="loginPassword" placeholder="Admin password" type="password"/>
+<button class="btn btn-accent" data-i18n="t_f2fdea44" id="loginBtn" style="justify-content:center">Sign In</button>
+<div class="admin-login-error" id="loginError"></div>
+<p style="color:#5C647F;font-size:0.72rem;margin-top:var(--space-4)"><span data-i18n="t_1f985b83">Demo default password: </span><strong data-i18n="t_3b682bf5">velix2026</strong><span data-i18n="t_7a92fbcf"> — change it in Settings once inside.</span></p>
+</div>
+</div>
+<!-- ============================ DASHBOARD SHELL ============================ -->
+<div class="admin-shell" id="adminShell" style="display:none">
+<aside class="admin-sidebar">
+<div class="admin-brand"><img alt="VELIX" src="assets/img/logo.png"/><strong data-i18n="t_e3afed00" style="color:#fff;font-family:var(--font-display)">Admin</strong></div>
+<nav class="admin-nav" id="adminNav">
+<button class="active" data-panel="dashboard"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><rect height="9" rx="1" width="7" x="3" y="3"></rect><rect height="5" rx="1" width="7" x="14" y="3"></rect><rect height="9" rx="1" width="7" x="14" y="12"></rect><rect height="5" rx="1" width="7" x="3" y="16"></rect></svg><span data-i18n="t_2938c7f7">Dashboard</span></button>
+<button data-panel="projects"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><path d="M3 9h18M9 21V9"></path></svg><span data-i18n="t_54e1d446">Projects</span></button>
+<button data-panel="news"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M4 4h16v16H4z"></path><path d="M8 8h8M8 12h8M8 16h4"></path></svg><span data-i18n="t_dd1ba187">News</span></button>
+<button data-panel="leads"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg><span data-i18n="t_ae536147">Leads</span></button>
+<button data-panel="chat"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span data-i18n="t_2a19633a">Chat Logs</span></button>
+<button data-panel="media"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span data-i18n="t_f9d1d721">Media Library</span></button>
+<button data-panel="settings"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg><span data-i18n="t_f4f70727">Settings</span></button>
+</nav>
+<div class="admin-sidebar-footer">
+<button type="button" class="lang-switch lang-switch-admin" id="langSwitch" aria-label="Switch language"><span class="lang-cur">EN</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+<button id="toggleTheme"><svg fill="none" height="16" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"></path></svg><span data-i18n="t_eb21044d">Toggle Theme</span></button>
+<button id="viewSiteBtn"><svg fill="none" height="16" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="16"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6M10 14 21 3"></path></svg><span data-i18n="t_1e35fe80">View Website</span></button>
+<button id="logoutBtn"><svg fill="none" height="16" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="16"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="M16 17l5-5-5-5M21 12H9"></path></svg><span data-i18n="t_b0c2b25b">Log Out</span></button>
+</div>
+</aside>
+<main class="admin-main">
+<!-- DASHBOARD -->
+<section class="admin-panel active" id="panel-dashboard">
+<div class="admin-topbar"><h1 data-i18n="t_2938c7f7">Dashboard</h1></div>
+<div class="admin-kpis">
+<div class="admin-kpi"><span data-i18n="t_2f655c2b">Total Projects</span><strong id="kpiProjects">0</strong></div>
+<div class="admin-kpi"><span data-i18n="t_8faf479e">Published Articles</span><strong id="kpiNews">0</strong></div>
+<div class="admin-kpi"><span data-i18n="t_e6b31bd2">Total Leads</span><strong id="kpiLeads">0</strong></div>
+<div class="admin-kpi"><span data-i18n="t_82b3eb71">Chat Conversations</span><strong id="kpiChats">0</strong></div>
+</div>
+<div class="admin-grid-2">
+<div class="admin-card">
+<h3 data-i18n="t_c2bcf65f">Leads captured (last 7 days)</h3>
+<div class="admin-bars" id="leadsChart"></div>
+</div>
+<div class="admin-card">
+<h3 data-i18n="t_7377550f">Recent Activity</h3>
+<div id="activityList"></div>
+</div>
+</div>
+</section>
+<!-- PROJECTS -->
+<section class="admin-panel" id="panel-projects">
+<div class="admin-topbar">
+<h1 data-i18n="t_54e1d446">Projects</h1>
+<button class="btn btn-primary" data-i18n="t_f0f576c6" id="addProjectBtn">+ Add Project</button>
+</div>
+<table class="admin-table">
+<thead><tr><th data-i18n="t_c795dfff">Cover</th><th data-i18n="t_b78a3223">Title</th><th data-i18n="t_3adbdb3a">Category</th><th data-i18n="t_577d7068">Client</th><th data-i18n="t_15422d54">Featured</th><th></th></tr></thead>
+<tbody id="projectsTableBody"></tbody>
+</table>
+<div class="admin-empty" id="projectsEmpty" style="display:none">No projects yet. Click "Add Project" to create your first one.</div>
+</section>
+<!-- NEWS -->
+<section class="admin-panel" id="panel-news">
+<div class="admin-topbar">
+<h1 data-i18n="t_dd1ba187">News</h1>
+<button class="btn btn-primary" data-i18n="t_d93c84f2" id="addNewsBtn">+ Create Article</button>
+</div>
+<table class="admin-table">
+<thead><tr><th data-i18n="t_c795dfff">Cover</th><th data-i18n="t_b78a3223">Title</th><th data-i18n="t_3adbdb3a">Category</th><th data-i18n="t_9b9d8a97">Published</th><th></th></tr></thead>
+<tbody id="newsTableBody"></tbody>
+</table>
+<div class="admin-empty" id="newsEmpty" style="display:none">No articles yet. Click "Create Article" to publish your first one.</div>
+</section>
+<!-- LEADS -->
+<section class="admin-panel" id="panel-leads">
+<div class="admin-topbar"><h1 data-i18n="t_9e4532dc">Leads Pipeline</h1></div>
+<div class="kanban" id="kanbanBoard"></div>
+</section>
+<!-- CHAT LOGS -->
+<section class="admin-panel" id="panel-chat">
+<div class="admin-topbar"><h1 data-i18n="t_2a19633a">Chat Logs</h1></div>
+<div class="admin-grid-2">
+<div class="admin-card">
+<h3 data-i18n="t_f004c5e3">Conversations</h3>
+<div class="chat-log-list" id="chatLogList"></div>
+</div>
+<div class="admin-card">
+<h3 data-i18n="t_f24f9b19">Transcript</h3>
+<div class="chat-log-preview" id="chatLogPreview"><p style="color:#6E7695;font-size:0.85rem">Select a conversation to view messages.</p></div>
+</div>
+</div>
+</section>
+<!-- MEDIA -->
+<section class="admin-panel" id="panel-media">
+<div class="admin-topbar"><h1 data-i18n="t_f9d1d721">Media Library</h1></div>
+<div class="media-grid" id="mediaGrid"></div>
+<div class="admin-empty" id="mediaEmpty" style="display:none">No media uploaded yet. Images you add to Projects and News will appear here.</div>
+</section>
+<!-- SETTINGS -->
+<section class="admin-panel" id="panel-settings">
+<div class="admin-topbar"><h1 data-i18n="t_214da1f2">Website Settings</h1></div>
+<div class="admin-card" style="max-width:640px">
+<h3 data-i18n="t_0897c6a8">Hero Video</h3>
+<div class="admin-field" style="margin-bottom:var(--space-4)"><label data-i18n="t_66bcf322">Hero background video URL (autoplay, muted, loop)</label><input id="setHeroVideo" placeholder="https://example.com/hero.mp4" type="text"/></div>
+<div class="admin-field" style="margin-bottom:var(--space-5)"><label data-i18n="t_0b0769f2">Hero poster image URL (optional)</label><input id="setHeroPoster" placeholder="https://example.com/poster.jpg" type="text"/></div>
+<h3 data-i18n="t_d88946b6">SEO</h3>
+<div class="admin-field" style="margin-bottom:var(--space-4)"><label data-i18n="t_10d3261e">Site title</label><input id="setSeoTitle" type="text"/></div>
+<div class="admin-field" style="margin-bottom:var(--space-5)"><label data-i18n="t_3f64b2be">Meta description</label><textarea id="setSeoDesc" rows="3"></textarea></div>
+<h3 data-i18n="t_2fae3262">Security</h3>
+<div class="admin-field" style="margin-bottom:var(--space-5)"><label data-i18n="t_e8244e66">Change admin password</label><input id="setPassword" placeholder="New password" type="password"/></div>
+<button class="btn btn-accent" data-i18n="t_9daf1fb7" id="saveSettingsBtn">Save Settings</button>
+<p data-i18n="t_9a7e58ee" id="settingsSaved" style="color:#4FD983;font-size:0.85rem;margin-top:var(--space-3);display:none">Settings saved.</p>
+</div>
+</section>
+</main>
+</div>
+<!-- ============================ PROJECT MODAL ============================ -->
+<div class="admin-modal-overlay" id="projectModalOverlay">
+<div class="admin-modal">
+<h3 id="projectModalTitle">Add Project</h3>
+<form id="projectForm">
+<input id="pf-id" type="hidden"/>
+<div class="admin-form-grid">
+<div class="admin-field full"><label data-i18n="t_d57f08db">Project Title</label><input id="pf-title" required=""/></div>
+<div class="admin-field"><label data-i18n="t_577d7068">Client</label><input id="pf-client"/></div>
+<div class="admin-field"><label data-i18n="t_3adbdb3a">Category</label><input id="pf-category" placeholder="e.g. Restaurant, E-Commerce"/></div>
+<div class="admin-field"><label data-i18n="t_8e2a2080">Completion Date</label><input id="pf-date" type="date"/></div>
+<div class="admin-field"><label data-i18n="t_8f42e4c6">Featured Project</label>
+<select id="pf-featured"><option value="false">No</option><option value="true">Yes</option></select>
+</div>
+<div class="admin-field full"><label data-i18n="t_74ff6a72">Technologies (comma separated)</label><input id="pf-tech" placeholder="React, Node.js, PostgreSQL"/></div>
+<div class="admin-field full"><label data-i18n="t_b5a7adde">Description</label><textarea id="pf-desc" rows="4"></textarea></div>
+<div class="admin-field full"><label data-i18n="t_bf525aae">Cover Image</label><input accept="image/*" id="pf-cover" type="file"/></div>
+<div class="admin-field full"><label data-i18n="t_3035ca61">Gallery Images (multiple)</label><input accept="image/*" id="pf-gallery" multiple="" type="file"/></div>
+<div class="admin-field"><label data-i18n="t_2022c7b1">Before Image (optional)</label><input accept="image/*" id="pf-before" type="file"/></div>
+<div class="admin-field"><label data-i18n="t_05e1f7ca">After Image (optional)</label><input accept="image/*" id="pf-after" type="file"/></div>
+</div>
+<div class="admin-modal-actions">
+<button class="btn btn-outline" data-i18n="t_ea478870" id="projectModalCancel" type="button">Cancel</button>
+<button class="btn btn-accent" data-i18n="t_c9aadd22" type="submit">Save Project</button>
+</div>
+</form>
+</div>
+</div>
+<!-- ============================ NEWS MODAL ============================ -->
+<div class="admin-modal-overlay" id="newsModalOverlay">
+<div class="admin-modal">
+<h3 id="newsModalTitle">Create Article</h3>
+<form id="newsForm">
+<input id="nf-id" type="hidden"/>
+<div class="admin-form-grid">
+<div class="admin-field full"><label data-i18n="t_b78a3223">Title</label><input id="nf-title" required=""/></div>
+<div class="admin-field"><label data-i18n="t_3adbdb3a">Category</label><input id="nf-category" placeholder="e.g. Studio News"/></div>
+<div class="admin-field"><label data-i18n="t_a517747c">Author</label><input id="nf-author" value="Moatasm Abdeen"/></div>
+<div class="admin-field full"><label data-i18n="t_6ca8bf47">Excerpt</label><input id="nf-excerpt" placeholder="One-line summary shown in listings"/></div>
+<div class="admin-field full"><label data-i18n="t_bf525aae">Cover Image</label><input accept="image/*" id="nf-cover" type="file"/></div>
+<div class="admin-field full"><label data-i18n="t_511950f5">Video (optional)</label><input accept="video/*" id="nf-video" type="file"/></div>
+<div class="admin-field full">
+<label data-i18n="t_8d415ede">Article Body</label>
+<div class="rte-toolbar">
+<button data-cmd="bold" type="button"><b>B</b></button>
+<button data-cmd="italic" type="button"><i>I</i></button>
+<button data-cmd="insertUnorderedList" type="button">• List</button>
+<button data-cmd="formatBlock" data-val="H3" type="button">H3</button>
+<button data-cmd="formatBlock" data-val="P" type="button">P</button>
+</div>
+<div class="rte-editable" contenteditable="true" id="nf-body"></div>
+</div>
+</div>
+<div class="admin-modal-actions">
+<button class="btn btn-outline" data-i18n="t_ea478870" id="newsModalCancel" type="button">Cancel</button>
+<button class="btn btn-accent" data-i18n="t_c02ac815" type="submit">Publish Article</button>
+</div>
+</form>
+</div>
+</div>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script>
+/* ==========================================================================
+   ADMIN DASHBOARD LOGIC
+   ========================================================================== */
+(function () {
+  const loginScreen = document.getElementById('loginScreen');
+  const shell = document.getElementById('adminShell');
+
+  function showApp() {
+    loginScreen.style.display = 'none';
+    shell.style.display = 'grid';
+    renderAll();
+  }
+
+  if (VELIX.auth.isLoggedIn()) showApp();
+
+  document.getElementById('loginBtn').addEventListener('click', attemptLogin);
+  document.getElementById('loginPassword').addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptLogin(); });
+  function attemptLogin() {
+    const val = document.getElementById('loginPassword').value;
+    if (VELIX.auth.login(val)) { showApp(); }
+    else document.getElementById('loginError').textContent = 'Incorrect password. Please try again.';
+  }
+
+  document.getElementById('logoutBtn').addEventListener('click', () => { VELIX.auth.logout(); location.reload(); });
+  document.getElementById('viewSiteBtn').addEventListener('click', () => window.open('index.html', '_blank'));
+
+  /* ---- Theme toggle ---- */
+  document.getElementById('toggleTheme').addEventListener('click', () => {
+    document.body.classList.toggle('theme-light');
+  });
+
+  /* ---- Sidebar nav ---- */
+  document.getElementById('adminNav').addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-panel]');
+    if (!btn) return;
+    document.querySelectorAll('.admin-nav button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + btn.dataset.panel).classList.add('active');
+    renderAll();
+  });
+
+  function esc(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+
+  /* ---- Dashboard ---- */
+  function renderDashboard() {
+    document.getElementById('kpiProjects').textContent = VELIX.projects.all().length;
+    document.getElementById('kpiNews').textContent = VELIX.news.all().length;
+    document.getElementById('kpiLeads').textContent = VELIX.leads.all().length;
+    document.getElementById('kpiChats').textContent = VELIX.conversations.all().length;
+
+    // 7-day lead bar chart
+    const days = [...Array(7)].map((_, i) => {
+      const d = new Date(); d.setDate(d.getDate() - (6 - i));
+      return d;
+    });
+    const leads = VELIX.leads.all();
+    const counts = days.map(d => leads.filter(l => new Date(l.createdAt).toDateString() === d.toDateString()).length);
+    const max = Math.max(1, ...counts);
+    document.getElementById('leadsChart').innerHTML = days.map((d, i) => `
+      <div class="bar-col">
+        <div class="bar" style="height:${(counts[i] / max) * 100}%; min-height:4px;" title="${counts[i]} leads"></div>
+        <span>${d.toLocaleDateString(undefined, { weekday: 'short' })}</span>
+      </div>`).join('');
+
+    const activity = VELIX.activity.all();
+    document.getElementById('activityList').innerHTML = activity.length
+      ? activity.slice(0, 10).map(a => `<div class="admin-activity-item"><div>${esc(a.text)}<time>${new Date(a.at).toLocaleString()}</time></div></div>`).join('')
+      : '<p style="color:#6E7695;font-size:0.85rem">No activity yet.</p>';
+  }
+
+  /* ---- Projects ---- */
+  function renderProjects() {
+    const list = VELIX.projects.all();
+    const body = document.getElementById('projectsTableBody');
+    document.getElementById('projectsEmpty').style.display = list.length ? 'none' : 'block';
+    body.innerHTML = list.map(p => `
+      <tr>
+        <td>${p.cover ? `<img class="thumb" src="${p.cover}">` : '—'}</td>
+        <td>${esc(p.title)}</td>
+        <td>${esc(p.category || '—')}</td>
+        <td>${esc(p.client || '—')}</td>
+        <td><span class="badge ${p.featured ? 'featured-yes' : 'featured-no'}">${p.featured ? 'Featured' : 'No'}</span></td>
+        <td class="row-actions">
+          <button data-edit="${p.id}">Edit</button>
+          <button data-delete="${p.id}" class="danger">Delete</button>
+        </td>
+      </tr>`).join('');
+  }
+
+  document.getElementById('addProjectBtn').addEventListener('click', () => openProjectModal());
+  document.getElementById('projectsTableBody').addEventListener('click', (e) => {
+    const edit = e.target.closest('[data-edit]');
+    const del = e.target.closest('[data-delete]');
+    if (edit) openProjectModal(VELIX.projects.get(edit.dataset.edit));
+    if (del) { if (confirm('Delete this project?')) { VELIX.projects.remove(del.dataset.delete); renderAll(); } }
+  });
+
+  const projectModal = document.getElementById('projectModalOverlay');
+  let editingProject = null;
+  function openProjectModal(project) {
+    editingProject = project || null;
+    document.getElementById('projectModalTitle').textContent = project ? 'Edit Project' : 'Add Project';
+    document.getElementById('pf-id').value = project ? project.id : '';
+    document.getElementById('pf-title').value = project ? project.title : '';
+    document.getElementById('pf-client').value = project ? project.client : '';
+    document.getElementById('pf-category').value = project ? project.category : '';
+    document.getElementById('pf-date').value = project ? (project.completionDate || '').slice(0, 10) : '';
+    document.getElementById('pf-featured').value = project ? String(!!project.featured) : 'false';
+    document.getElementById('pf-tech').value = project ? (project.technologies || []).join(', ') : '';
+    document.getElementById('pf-desc').value = project ? project.description : '';
+    document.getElementById('pf-cover').value = '';
+    document.getElementById('pf-gallery').value = '';
+    document.getElementById('pf-before').value = '';
+    document.getElementById('pf-after').value = '';
+    projectModal.classList.add('is-open');
+  }
+  document.getElementById('projectModalCancel').addEventListener('click', () => projectModal.classList.remove('is-open'));
+
+  document.getElementById('projectForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const coverFile = document.getElementById('pf-cover').files[0];
+    const galleryFiles = Array.from(document.getElementById('pf-gallery').files);
+    const beforeFile = document.getElementById('pf-before').files[0];
+    const afterFile = document.getElementById('pf-after').files[0];
+
+    const cover = coverFile ? await VELIX.fileToDataURL(coverFile) : (editingProject ? editingProject.cover : '');
+    const galleryNew = await Promise.all(galleryFiles.map(f => VELIX.fileToDataURL(f)));
+    const gallery = editingProject ? editingProject.gallery : { desktop: [], tablet: [], mobile: [] };
+    if (galleryNew.length) gallery.desktop = (gallery.desktop || []).concat(galleryNew);
+
+    const before = beforeFile ? await VELIX.fileToDataURL(beforeFile) : (editingProject && editingProject.beforeAfter ? editingProject.beforeAfter.before : '');
+    const after = afterFile ? await VELIX.fileToDataURL(afterFile) : (editingProject && editingProject.beforeAfter ? editingProject.beforeAfter.after : '');
+
+    const project = {
+      id: document.getElementById('pf-id').value || undefined,
+      title: document.getElementById('pf-title').value,
+      client: document.getElementById('pf-client').value,
+      category: document.getElementById('pf-category').value,
+      completionDate: document.getElementById('pf-date').value,
+      featured: document.getElementById('pf-featured').value === 'true',
+      technologies: document.getElementById('pf-tech').value.split(',').map(t => t.trim()).filter(Boolean),
+      description: document.getElementById('pf-desc').value,
+      cover,
+      gallery,
+      beforeAfter: { before, after }
+    };
+    VELIX.projects.save(project);
+    projectModal.classList.remove('is-open');
+    renderAll();
+  });
+
+  /* ---- News ---- */
+  function renderNews() {
+    const list = VELIX.news.all();
+    const body = document.getElementById('newsTableBody');
+    document.getElementById('newsEmpty').style.display = list.length ? 'none' : 'block';
+    body.innerHTML = list.map(n => `
+      <tr>
+        <td>${n.cover ? `<img class="thumb" src="${n.cover}">` : '—'}</td>
+        <td>${esc(n.title)}</td>
+        <td>${esc(n.category || '—')}</td>
+        <td>${new Date(n.createdAt).toLocaleDateString()}</td>
+        <td class="row-actions">
+          <button data-edit="${n.id}">Edit</button>
+          <button data-delete="${n.id}" class="danger">Delete</button>
+        </td>
+      </tr>`).join('');
+  }
+
+  document.getElementById('addNewsBtn').addEventListener('click', () => openNewsModal());
+  document.getElementById('newsTableBody').addEventListener('click', (e) => {
+    const edit = e.target.closest('[data-edit]');
+    const del = e.target.closest('[data-delete]');
+    if (edit) openNewsModal(VELIX.news.get(edit.dataset.edit));
+    if (del) { if (confirm('Delete this article?')) { VELIX.news.remove(del.dataset.delete); renderAll(); } }
+  });
+
+  const newsModal = document.getElementById('newsModalOverlay');
+  let editingNews = null;
+  function openNewsModal(article) {
+    editingNews = article || null;
+    document.getElementById('newsModalTitle').textContent = article ? 'Edit Article' : 'Create Article';
+    document.getElementById('nf-id').value = article ? article.id : '';
+    document.getElementById('nf-title').value = article ? article.title : '';
+    document.getElementById('nf-category').value = article ? article.category : '';
+    document.getElementById('nf-author').value = article ? article.author : 'Moatasm Abdeen';
+    document.getElementById('nf-excerpt').value = article ? article.excerpt : '';
+    document.getElementById('nf-body').innerHTML = article ? article.body : '';
+    document.getElementById('nf-cover').value = '';
+    document.getElementById('nf-video').value = '';
+    newsModal.classList.add('is-open');
+  }
+  document.getElementById('newsModalCancel').addEventListener('click', () => newsModal.classList.remove('is-open'));
+
+  document.querySelectorAll('.rte-toolbar button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('nf-body').focus();
+      document.execCommand(btn.dataset.cmd, false, btn.dataset.val || null);
+    });
+  });
+
+  document.getElementById('newsForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const coverFile = document.getElementById('nf-cover').files[0];
+    const videoFile = document.getElementById('nf-video').files[0];
+    const cover = coverFile ? await VELIX.fileToDataURL(coverFile) : (editingNews ? editingNews.cover : '');
+    const video = videoFile ? await VELIX.fileToDataURL(videoFile) : (editingNews ? editingNews.video : '');
+
+    const article = {
+      id: document.getElementById('nf-id').value || undefined,
+      title: document.getElementById('nf-title').value,
+      category: document.getElementById('nf-category').value,
+      author: document.getElementById('nf-author').value,
+      excerpt: document.getElementById('nf-excerpt').value,
+      body: document.getElementById('nf-body').innerHTML,
+      cover, video,
+      createdAt: editingNews ? editingNews.createdAt : undefined
+    };
+    VELIX.news.save(article);
+    newsModal.classList.remove('is-open');
+    renderAll();
+  });
+
+  /* ---- Leads Kanban ---- */
+  const STAGES = ['New', 'Contacted', 'Negotiation', 'Won', 'Lost'];
+  function renderKanban() {
+    const board = document.getElementById('kanbanBoard');
+    const leads = VELIX.leads.all();
+    board.innerHTML = STAGES.map(stage => `
+      <div class="kanban-col" data-stage="${stage}">
+        <h4><span>${stage}</span><span>${leads.filter(l => l.status === stage).length}</span></h4>
+        <div class="kanban-cards" data-dropzone="${stage}">
+          ${leads.filter(l => l.status === stage).map(l => `
+            <div class="kanban-card" draggable="true" data-id="${l.id}">
+              <strong>${esc(l.name || 'Unnamed lead')}</strong>
+              ${esc(l.phone || l.email || '')}<br>
+              <span style="opacity:.7">${esc((l.projectDetails || '').slice(0, 60))}</span><br>
+              <span style="opacity:.55;font-size:0.72rem">${esc(l.source || '')} · ${new Date(l.createdAt).toLocaleDateString()}</span>
+            </div>`).join('')}
+        </div>
+      </div>`).join('');
+
+    board.querySelectorAll('.kanban-card').forEach(card => {
+      card.addEventListener('dragstart', () => card.classList.add('dragging'));
+      card.addEventListener('dragend', () => card.classList.remove('dragging'));
+      card.addEventListener('click', () => {
+        const lead = VELIX.leads.get(card.dataset.id);
+        if (!lead) return;
+        const note = prompt('Add a note for ' + (lead.name || 'this lead') + ' (leave blank to skip):');
+        if (note) VELIX.leads.addNote(lead.id, note);
+      });
+    });
+    board.querySelectorAll('.kanban-col').forEach(col => {
+      col.addEventListener('dragover', (e) => { e.preventDefault(); col.classList.add('drag-over'); });
+      col.addEventListener('dragleave', () => col.classList.remove('drag-over'));
+      col.addEventListener('drop', (e) => {
+        e.preventDefault();
+        col.classList.remove('drag-over');
+        const dragging = board.querySelector('.dragging');
+        if (!dragging) return;
+        VELIX.leads.update(dragging.dataset.id, { status: col.dataset.stage });
+        renderAll();
+      });
+    });
+  }
+
+  /* ---- Chat logs ---- */
+  function renderChatLogs() {
+    const list = VELIX.conversations.all();
+    const listEl = document.getElementById('chatLogList');
+    listEl.innerHTML = list.length ? list.map(c => `
+      <div class="chat-log-item" data-id="${c.id}">
+        <strong style="display:block;font-size:0.85rem">Conversation — ${new Date(c.updatedAt).toLocaleString()}</strong>
+        <span style="font-size:0.78rem;opacity:.7">${c.messages.length} messages</span>
+      </div>`).join('') : '<p style="color:#6E7695;font-size:0.85rem">No conversations yet.</p>';
+
+    listEl.querySelectorAll('.chat-log-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const convo = list.find(c => c.id === item.dataset.id);
+        document.getElementById('chatLogPreview').innerHTML = convo.messages.map(m =>
+          `<div class="velix-bubble ${m.who === 'user' ? 'is-user' : 'is-bot'}" style="align-self:${m.who === 'user' ? 'flex-end' : 'flex-start'}">${m.text}</div>`
+        ).join('');
+      });
+    });
+  }
+
+  /* ---- Media library ---- */
+  function renderMedia() {
+    const images = [];
+    VELIX.projects.all().forEach(p => {
+      if (p.cover) images.push(p.cover);
+      (p.gallery && p.gallery.desktop || []).forEach(i => images.push(i));
+      if (p.beforeAfter) { if (p.beforeAfter.before) images.push(p.beforeAfter.before); if (p.beforeAfter.after) images.push(p.beforeAfter.after); }
+    });
+    VELIX.news.all().forEach(n => { if (n.cover) images.push(n.cover); });
+    document.getElementById('mediaEmpty').style.display = images.length ? 'none' : 'block';
+    document.getElementById('mediaGrid').innerHTML = images.map(src => `<div class="media-item"><img src="${src}"></div>`).join('');
+  }
+
+  /* ---- Settings ---- */
+  function renderSettings() {
+    const s = VELIX.settings.get();
+    document.getElementById('setHeroVideo').value = s.heroVideoUrl || '';
+    document.getElementById('setHeroPoster').value = s.heroPoster || '';
+    document.getElementById('setSeoTitle').value = s.seoTitle || '';
+    document.getElementById('setSeoDesc').value = s.seoDescription || '';
+    document.getElementById('setPassword').value = '';
+  }
+  document.getElementById('saveSettingsBtn').addEventListener('click', () => {
+    const patch = {
+      heroVideoUrl: document.getElementById('setHeroVideo').value,
+      heroPoster: document.getElementById('setHeroPoster').value,
+      seoTitle: document.getElementById('setSeoTitle').value,
+      seoDescription: document.getElementById('setSeoDesc').value
+    };
+    const newPass = document.getElementById('setPassword').value;
+    if (newPass) patch.adminPassword = newPass;
+    VELIX.settings.save(patch);
+    document.getElementById('settingsSaved').style.display = 'block';
+    setTimeout(() => document.getElementById('settingsSaved').style.display = 'none', 2000);
+  });
+
+  function renderAll() {
+    renderDashboard();
+    renderProjects();
+    renderNews();
+    renderKanban();
+    renderChatLogs();
+    renderMedia();
+    renderSettings();
+  }
+})();
+</script>
+</body>
+</html>
